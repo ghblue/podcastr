@@ -1,4 +1,4 @@
-Next.js Starter Project
+#Next.js Starter Project
 
 This is a starter project for React that uses Next.js.
 
@@ -10,7 +10,7 @@ This is a starter project for React that uses Next.js.
     Comes with Ionicons icon font and shows how to bundle other CSS and font files
 
 You can see a live demo at https://nextjs-starter.now.sh
-About
+#About
 
 Next.js is a framework that makes it easy to create 'universal' React apps - React apps that do both client and server side rendering.
 
@@ -21,7 +21,7 @@ This is a starter project that provides an example of how to use Next.js with Ex
 This project exists to make it easier to get started a creating production app in React. You are invited to use it as a reference or to copy it and use it as a base for your own projects. Contributions to improve this project are welcome.
 Running locally in development mode
 
-To get started, just clone the repository and run npm install && npm run dev:
+#To get started, just clone the repository and run npm install && npm run dev:
 
 git clone https://github.com/iaincollins/nextjs-starter.git
 npm install
