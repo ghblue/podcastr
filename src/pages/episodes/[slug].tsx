@@ -1,10 +1,12 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { format, parseISO } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR'
 import { api } from '../../services/api';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
-import Image from 'next/image'
+import { usePlayer } from '../../contexts/PlayerContext';
 
+import ptBR from 'date-fns/locale/pt-BR'
+import Image from 'next/image'
+import Head from 'next/head';
 import styles from './episode.module.scss'
 import Link from 'next/link';
 
@@ -26,8 +28,14 @@ type EpisodeProps ={
 }
 
 export default function Episode({ episode }: EpisodeProps){
+    const { play } = usePlayer();
+
     return(
         <div className={styles.episode}>
+            <Head>
+            <title>{episode.title} | Podcastr</title>
+            </Head>
+            
             <div className={styles.thumbnailContainer}>
                 <Link href="/">
                     <button type="button">
@@ -38,7 +46,7 @@ export default function Episode({ episode }: EpisodeProps){
                 height={160}
                 src={episode.thumbnail}
                 objectFit="cover" />
-                <button type="button">
+                <button type="button" onClick={() => play(episode)}>
                     <img src="/play.svg" alt="Tocar episódio" />
                 </button>
             </div>
@@ -83,7 +91,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx) =>{
     const { slug } = ctx.params;
-
     const { data } = await api.get(`/episodes/${slug}`)
 
     const episode = {
